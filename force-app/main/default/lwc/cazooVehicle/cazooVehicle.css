@@ -1,0 +1,10 @@
+.dimensions{
+    width: fit-content;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.exampleHolder{
+    width: 80px;
+    height: 80px;
+}

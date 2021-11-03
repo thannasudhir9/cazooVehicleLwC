@@ -1,0 +1,70 @@
+<!--
+  @description       : 
+  @author            : Sudhir Kumar Thanna
+  @group             : 
+  @last modified on  : 11-02-2021
+  @last modified by  : Sudhir Kumar Thanna
+-->
+<template >
+    <lightning-card title="VEHICLES" class="slds-float_left">
+        <template if:true={loadSpinner}>
+            <div class="exampleHolder slds-align_absolute-center">
+                <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+            </div>
+        </template>
+        <template if:false={loadSpinner}>
+            <table
+                class="slds-float_left dimensions slds-table slds-table--bordered slds-table--cell-buffer slds-max-medium-table--stacked-horizontal bu_centered-table slds-m-top--small">
+                <thead>
+                    <tr class="slds-text-heading--label slds-text-title--caps">
+                        <th scope="col" class="thead">
+                            <div class="min-header-width slds-custom-wrap "
+                                title="Make">
+                                Make</div>
+                        </th>
+                        <th scope="col" class="thead">
+                            <div class="min-header-width slds-custom-wrap "
+                                title="Model">
+                                Model</div>
+                        </th>
+                        <th scope="col" class="thead">
+                            <div class="min-header-width slds-custom-wrap "
+                                title="#Vehicles">
+                                #Vehicles</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={DBdataDefault} for:item="member" for:index="index">
+                        <tr key={member.Id} class="slds-hint-parent" data-index={index}>
+                            <td data-label="Make" >
+                                <div class="slds-custom-wrap" title={member.make__c} onclick={handleClick} data-index={index}>{member.make__c}</div>
+                            </td>
+                            <td data-label="Model" >
+                                <div class="slds-custom-wrap" title={member.model__c} onclick={handleClick} data-index={index}>{member.model__c}</div>
+                            </td>
+                            <td data-label="#Vehicle" >
+                                <div class="slds-custom-wrap" onclick={handleClick} data-index={index}>{member.expr0}</div>
+                            </td>
+                        </tr>
+                    </template>   
+                </tbody>
+            </table>
+        </template>
+    </lightning-card>
+
+    
+    <template if:true={loadedDataFromTable}>
+        <br/><br/><br/>
+        <lightning-card title={modelName} class="slds-float_left">
+                <div class="slds-form slds-p-horizontal--small slds-float_left dimensions">
+                        <div class="slds-form-element  slds-form-element_stacked">
+                            <label class="slds-form-element__label slds-no-flex">Total KM : {totalDriven}</label><br/>
+                            <label class="slds-form-element__label slds-no-flex">Total Revenue : €{totalRevenue}</label><br/>
+                            <label class="slds-form-element__label slds-no-flex">Earliest : {earliest}</label><br/>
+                            <label class="slds-form-element__label slds-no-flex">Latest : {latest}</label><br/>
+                        </div>
+                </div>
+        </lightning-card>
+    </template>
+</template>
